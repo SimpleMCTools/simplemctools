@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xNBT</title>
+    <script src="xNBT.js" type="module"></script>
+    <script src="https://pfau-software.de/json-viewer/dist/iife/index.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div>
+            <button id="download">Download</button>
+            <a href="https://youtube.com/@therealnoob1655" target="_blank">Subscribe</a>
+        </div>
+    </nav>
+
+    <input type="file" id="inputFile">
+    <!-- <pre id="output"></pre> -->
+    <br><br>
+    <div id="logger">
+        <h2 color="white">Logger</h2>
+    </div>
+    <andypf-json-viewer id="view-json" indent="2" expanded="true" theme="default-light" show-data-types="true" show-toolbar="false"
+        expand-icon-type="arrow" show-copy="true" show-size="true" expand-empty="false" theme="monokai"></andypf-json-viewer>
+</body>
+
+</html>
