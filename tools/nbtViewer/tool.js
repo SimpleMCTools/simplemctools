@@ -9,6 +9,7 @@ const downloadBtn = document.getElementById("downloadBtn")
 inputFile.addEventListener("change", async (event) => {
     logger.clear();
     const file = event.target.files[0];
+    globalThis.userInputedFile = file;
     if (!file) {
         logger.error("No file selected.");
         return;
@@ -19,7 +20,7 @@ inputFile.addEventListener("change", async (event) => {
 
     try {
         const nbtData = await NBT.read(arrayBuffer);
-        // globalThis.nbtData = nbtData;
+        globalThis.nbtData = nbtData;
     } catch (error) {
         logger.error("Failed to read NBT data");
         return;
@@ -46,10 +47,10 @@ downloadBtn.addEventListener("click", () => {
         const download = document.createElement("a")
         
         download.href = url
-        download.download = `${file.name}.simplemctools.json`
+        download.download = `${userInputedFile.name}.simplemctools.json`
         download.click()
     } catch(error) {
-        logger.error("JSON data not found. Try selecting a file")
+        console.error(error)
     }
 });
 
