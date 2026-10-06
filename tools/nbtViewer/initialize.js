@@ -9,6 +9,7 @@ export async function initialize() {
             <input type="file" id="inputFile">
             <br><br>
             <div id="logger"><h2>logger</h2></div>
+            <button type="button" id="downloadBtn">Download</button>
             <br><br>
             <andypf-json-viewer id="jsonViewer"></andypf-json-viewer>
         </div>
@@ -30,10 +31,6 @@ export async function initialize() {
     jsonViewer.expandEmpty = false
     jsonViewer.data="You will see the NBT data here after selecting a file.";
 
-    // sett
-
-
     // execute the script
-
     import("./tool.js")
 }

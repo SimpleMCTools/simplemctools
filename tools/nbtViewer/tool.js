@@ -3,7 +3,8 @@ import { WebLogger } from "./../../WebLogger.js";
 
 const logger = new WebLogger('logger');
 const inputFile = document.getElementById("inputFile");
-const jsonViewer = document.getElementById("jsonViewer")
+const jsonViewer = document.getElementById("jsonViewer");
+const downloadBtn = document.getElementById("downloadBtn")
 
 inputFile.addEventListener("change", async (event) => {
     logger.clear();
@@ -18,7 +19,7 @@ inputFile.addEventListener("change", async (event) => {
 
     try {
         const nbtData = await NBT.read(arrayBuffer);
-        globalThis.nbtData = nbtData;
+        // globalThis.nbtData = nbtData;
     } catch (error) {
         logger.error("Failed to read NBT data");
         return;
@@ -33,5 +34,22 @@ inputFile.addEventListener("change", async (event) => {
     console.log(jsonViewer)
     jsonViewer.data = JSON.parse(jsonData);
     logger.info("Successfully extracted NBT data from the file.");
-})
+
+    globalThis.jsonData = jsonData;
+});
+
+downloadBtn.addEventListener("click", () => {
+    // for downloading the file
+    try {
+        const blob = new Blob([globalThis.jsonData], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const download = document.createElement("a")
+        
+        download.href = url
+        download.download = `${file.name}.simplemctools.json`
+        download.click()
+    } catch(error) {
+        logger.error("JSON data not found. Try selecting a file")
+    }
+});
 
