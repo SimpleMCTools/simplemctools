@@ -41,16 +41,18 @@ inputFile.addEventListener("change", async (event) => {
 
 downloadBtn.addEventListener("click", () => {
     // for downloading the file
-    try {
+    if (globalThis.jsonData) {
         const blob = new Blob([globalThis.jsonData], { type: "application/json" });
         const url = URL.createObjectURL(blob);
-        const download = document.createElement("a")
+        const download = document.createElement("a");
         
-        download.href = url
-        download.download = `${userInputedFile.name}.simplemctools.json`
-        download.click()
-    } catch(error) {
-        console.error(error)
+        download.href = url;
+        download.download = `${userInputedFile.name}.simplemctools.json`;
+        download.click();
+    } else {
+        logger.error("Failed to retrieve JSON data, try selecting an nbt file");
+        return;
     }
+
 });
 
